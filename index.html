@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toll Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main">
+        <h1>Toll Management System</h1>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Vehicles</h3>
+                <p id="totalVehicles">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Collection</h3>
+                <p id="totalAmount">0 Tk</p>
+            </div>
+        </div>
+
+        <div class="form-box">
+            <h2>Add Toll Record</h2>
+
+            <input type="text" id="vehicleNumber" placeholder="Enter Vehicle Number">
+
+            <select id="vehicleType">
+                <option value="">Select Vehicle Type</option>
+                <option value="Bike">Bike</option>
+                <option value="Small Van">Small Van</option>
+                <option value="Car / Private Car">Car / Private Car</option>
+                <option value="Bus / Micro Bus">Bus / Micro Bus</option>
+                <option value="Truck">Truck</option>
+                <option value="Other / Undetected Vehicle">Other / Undetected Vehicle</option>
+            </select>
+
+            <button onclick="addRecord()">Add Record</button>
+        </div>
+
+        <div class="receipt">
+            <h2>Last Receipt</h2>
+            <p id="lastReceipt">No record added yet</p>
+        </div>
+
+        <div class="table-box">
+            <h2>Toll Records</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Record ID</th>
+                        <th>Vehicle Number</th>
+                        <th>Vehicle Type</th>
+                        <th>Toll Fee</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+
+                <tbody id="recordTable"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
