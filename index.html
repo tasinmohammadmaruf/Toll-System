@@ -6,65 +6,125 @@
 </head>
 <body>
 
-    <div class="main">
-        <h1>Toll Management System</h1>
+<nav>
+    <h2>Toll System</h2>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#add">Add Record</a>
+        <a href="#records">Records</a>
+        <button onclick="toggleMode()" id="modeBtn">Dark</button>
+        <button onclick="logout()" id="logoutBtn">Logout</button>
+    </div>
+</nav>
 
-        
-        <div class="cards">
-            <div class="card">
-                <h3>Total Vehicles</h3>
-                <p id="totalVehicles">0</p>
-            </div>
+<div class="login-box" id="loginBox">
+    <form onsubmit="loginUser(event)">
+        <h1>Login</h1>
+        <input type="email" id="email" placeholder="Enter Email">
+        <input type="password" id="password" placeholder="Enter Password">
+        <p class="error" id="loginError"></p>
+        <button type="submit">Login</button>
+    </form>
+</div>
 
-            <div class="card">
-                <h3>Total Collection</h3>
-                <p id="totalAmount">0 Tk</p>
-            </div>
+<div class="main" id="mainContent">
+
+    <section class="hero" id="home">
+        <div>
+            <h1>Toll Management System</h1>
+            <p id="welcomeText">A simple system to record toll vehicles, fees, date and time.</p>
+            <button onclick="changeText()">Change Text</button>
+        </div>
+        <img src="https://www.gobytrucknews.com/wp-content/uploads/2013/08/charitytoll.jpg" alt="Road Image">
+    </section>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Total Vehicles</h3>
+            <p id="totalVehicles">0</p>
         </div>
 
-        <div class="form-box">
-            <h2>Add Toll Record</h2>
-
-            <input type="text" id="vehicleNumber" placeholder="Enter Vehicle Number">
-
-            <select id="vehicleType">
-                <option value="">Select Vehicle Type</option>
-                <option value="Bike">Bike</option>
-                <option value="Small Van">Small Van</option>
-                <option value="Car / Private Car">Car / Private Car</option>
-                <option value="Bus / Micro Bus">Bus / Micro Bus</option>
-                <option value="Truck">Truck</option>
-                <option value="Other / Undetected Vehicle">Other / Undetected Vehicle</option>
-            </select>
-
-            <button onclick="addRecord()">Add Record</button>
+        <div class="card">
+            <h3>Total Collection</h3>
+            <p id="totalAmount">0 Tk</p>
         </div>
 
-        <div class="receipt">
-            <h2>Last Receipt</h2>
-            <p id="lastReceipt">No record added yet</p>
-        </div>
-
-        <div class="table-box">
-            <h2>Toll Records</h2>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Record ID</th>
-                        <th>Vehicle Number</th>
-                        <th>Vehicle Type</th>
-                        <th>Toll Fee</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-
-                <tbody id="recordTable"></tbody>
-            </table>
+        <div class="card">
+            <h3>Deleted Records</h3>
+            <p id="deletedCount">0</p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <form class="form-box" id="add" onsubmit="saveRecord(event)">
+        <h2 id="formTitle">Add Toll Record</h2>
+
+        <input type="hidden" id="editIndex">
+
+        <input type="text" id="vehicleNumber" placeholder="Enter Vehicle Number">
+
+        <select id="vehicleType">
+            <option value="">Select Vehicle Type</option>
+            <option value="Bike">Bike</option>
+            <option value="Small Van">Small Van</option>
+            <option value="Car / Private Car">Car / Private Car</option>
+            <option value="Bus / Micro Bus">Bus / Micro Bus</option>
+            <option value="Truck">Truck</option>
+            <option value="Other / Undetected Vehicle">Other / Undetected Vehicle</option>
+        </select>
+
+        <div class="option-box">
+            <p>Payment Method</p>
+            <label><input type="radio" name="payment" value="Cash"> Cash</label>
+            <label><input type="radio" name="payment" value="Card"> Card</label>
+        </div>
+
+        <div class="option-box">
+            <p>Extra Options</p>
+            <label><input type="checkbox" id="fastLane"> Fast Lane</label>
+            <label><input type="checkbox" id="heavyLoad"> Heavy Load</label>
+        </div>
+
+        <p class="error" id="formError"></p>
+        <p class="success" id="successMsg"></p>
+
+        <button type="submit">Submit Record</button>
+    </form>
+
+    <div class="receipt">
+        <h2>Last Receipt</h2>
+        <p id="lastReceipt">No record added yet</p>
+    </div>
+
+    <div class="table-box" id="records">
+        <div class="table-title">
+            <h2>Toll Records</h2>
+            <button onclick="toggleTable()">Show / Hide</button>
+        </div>
+
+        <table id="recordTableBox">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Vehicle No</th>
+                    <th>Type</th>
+                    <th>Fee</th>
+                    <th>Payment</th>
+                    <th>Extra</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="recordTable"></tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>Toll Management System Project</p>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
